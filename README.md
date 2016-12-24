@@ -25,12 +25,12 @@ public class ExampleUsage
         _random.NextDouble(); //Function from the "normal" Random class
         _random.NextDoubleExcludedBoth(1.0, 2.0);
         //Gives back a double value between 1.0 and 2.0 EXCLUDING the borders
-        //(from 1.0000000000000000000000000000000001 to 1.9999999999999999999999999999999991
+        //(e.g. from 1.0000000000000000000000000000000001 to 1.9999999999999999999999999999999999
     }
 }
 ```
 
-An example project can be found [here]().
+An example project can be found [here](https://github.com/SeppPenner/DotNetEasyRandom/tree/master/Project).
 
 Change history
 --------------
