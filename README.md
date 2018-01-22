@@ -3,7 +3,7 @@ EasyRandom for .Net
 
 EasyRandom for .Net is an assembly/ library to generate random numbers with the
 internal Random library from .Net more easy.
-The assembly was written and tested in .Net 4.6.2.
+The assembly was written and tested in .Net 4.7.
 
 [![Build status](https://ci.appveyor.com/api/projects/status/rq1fsgtfg4n9lfnx?svg=true)](https://ci.appveyor.com/project/SeppPenner/dotneteasyrandom)
 
