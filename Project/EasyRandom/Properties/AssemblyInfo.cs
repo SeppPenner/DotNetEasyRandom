@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("EasyRandom")]
 [assembly: AssemblyCompany("Haemmer Electronics")]
 [assembly: AssemblyProduct("EasyRandom")]
-[assembly: AssemblyCopyright("Copyright © Hämmer Electronics 2016")]
+[assembly: AssemblyCopyright("Copyright © Hämmer Electronics")]
 [assembly: AssemblyTrademark("EasyRandom")]
 [assembly: AssemblyCulture("")]
 
