@@ -42,5 +42,6 @@ An example project can be found [here](https://github.com/SeppPenner/DotNetEasyR
 Change history
 --------------
 
+* **Version 1.0.1.0 (2019-10-27)** : Updated nuget packages, added GitVersionTask.
 * **Version 1.0.0.1 (2019-05-06)** : Updated .Net version to 4.8.
 * **Version 1.0.0.0 (2016-12-24)** : 1.0 release.
