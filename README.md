@@ -56,8 +56,6 @@ public class ExampleUsage
 }
 ```
 
-An example project can be found [here](https://github.com/SeppPenner/DotNetEasyRandom/tree/master/Project).
-
 Change history
 --------------
 
