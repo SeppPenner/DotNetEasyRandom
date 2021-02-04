@@ -56,6 +56,12 @@ public class ExampleUsage
 }
 ```
 
+## Install
+
+```bash
+dotnet add package HaemmerElectronics.SeppPenner.DotNetEasyRandom
+```
+
 Change history
 --------------
 
