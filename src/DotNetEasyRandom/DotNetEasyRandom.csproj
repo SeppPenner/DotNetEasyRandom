@@ -16,12 +16,12 @@
     <RepositoryUrl>https://github.com/SeppPenner/DotNetEasyRandom</RepositoryUrl>
     <PackageIcon>Icon.png</PackageIcon>
     <RepositoryType>Github</RepositoryType>
-    <PackageReleaseNotes>Version 1.0.2.0 (2020-11-23): Removed license year, moved changelog to extra file, adjusted folder structure, updated nuget packages, moved to Net 5.0.</PackageReleaseNotes>
+    <PackageReleaseNotes>Version 1.0.3.0 (2021-02-21): Updated nuget packages.</PackageReleaseNotes>
     <PackageLicenseFile>License.txt</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="GitVersion.MsBuild" Version="5.6.4">
+    <PackageReference Include="GitVersion.MsBuild" Version="5.6.6">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
