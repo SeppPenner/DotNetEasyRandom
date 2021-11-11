@@ -2,7 +2,6 @@ DotNetEasyRandom
 ====================================
 
 DotNetEasyRandom is an assembly/ library to generate random numbers with the internal Random library from .Net more easily.
-The assembly was written and tested in .Net 5.0.
 
 [![Build status](https://ci.appveyor.com/api/projects/status/rq1fsgtfg4n9lfnx?svg=true)](https://ci.appveyor.com/project/SeppPenner/dotneteasyrandom)
 [![GitHub issues](https://img.shields.io/github/issues/SeppPenner/DotNetEasyRandom.svg)](https://github.com/SeppPenner/DotNetEasyRandom/issues)
@@ -24,11 +23,12 @@ The assembly was written and tested in .Net 5.0.
 * NetStandard 2.1
 * NetCore 3.1
 * Net 5.0
+* Net 6.0
 
 ## Net Core and Net Framework latest and LTS versions
 * https://dotnet.microsoft.com/download/dotnet-framework
 * https://dotnet.microsoft.com/download/dotnet-core
-* https://dotnet.microsoft.com/download/dotnet/5.0
+* https://dotnet.microsoft.com/download/dotnet
 
 ## Basic usage
 ```csharp
