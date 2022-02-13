@@ -14,11 +14,6 @@ DotNetEasyRandom is an assembly/ library to generate random numbers with the int
 [![Gitter](https://badges.gitter.im/DotNetEasyRandom/community.svg)](https://gitter.im/DotNetEasyRandom/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 ## Available for
-* NetFramework 4.6
-* NetFramework 4.6.2
-* NetFramework 4.7
-* NetFramework 4.7.2
-* NetFramework 4.8
 * NetStandard 2.0
 * NetStandard 2.1
 * NetCore 3.1

@@ -1,4 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="IncludeType.cs" company="Hämmer Electronics">
 //   Copyright (c) All rights reserved.
 // </copyright>
@@ -7,31 +7,30 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace DotNetEasyRandom
+namespace DotNetEasyRandom;
+
+/// <summary>
+/// The include type enumeration.
+/// </summary>
+public enum IncludeType
 {
     /// <summary>
-    /// The include type enumeration.
+    /// The none include type.
     /// </summary>
-    public enum IncludeType
-    {
-        /// <summary>
-        /// The none include type.
-        /// </summary>
-        None,
+    None,
 
-        /// <summary>
-        /// The start only include type.
-        /// </summary>
-        StartOnly,
+    /// <summary>
+    /// The start only include type.
+    /// </summary>
+    StartOnly,
 
-        /// <summary>
-        /// The end only include type.
-        /// </summary>
-        EndOnly,
+    /// <summary>
+    /// The end only include type.
+    /// </summary>
+    EndOnly,
 
-        /// <summary>
-        /// The both include type.
-        /// </summary>
-        Both
-    }
+    /// <summary>
+    /// The both include type.
+    /// </summary>
+    Both
 }

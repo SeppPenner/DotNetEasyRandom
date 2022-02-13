@@ -1,4 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="ParametersMustNotBeEqualException.cs" company="Hämmer Electronics">
 //   Copyright (c) All rights reserved.
 // </copyright>
@@ -7,40 +7,37 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace DotNetEasyRandom.Exceptions
+namespace DotNetEasyRandom.Exceptions;
+
+/// <inheritdoc cref="Exception"/>
+/// <summary>
+/// The parameters must not be equal exception.
+/// </summary>
+/// <seealso cref="Exception"/>
+[Serializable]
+public class ParametersMustNotBeEqualException : Exception
 {
-    using System;
-
-    /// <inheritdoc cref="Exception"/>
     /// <summary>
-    /// The parameters must not be equal exception.
+    /// Initializes a new instance of the <see cref="ParametersMustNotBeEqualException"/> class.
     /// </summary>
-    /// <seealso cref="Exception"/>
-    [Serializable]
-    public class ParametersMustNotBeEqualException : Exception
+    public ParametersMustNotBeEqualException()
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ParametersMustNotBeEqualException"/> class.
-        /// </summary>
-        public ParametersMustNotBeEqualException()
-        {
-        }
+    }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ParametersMustNotBeEqualException"/> class.
-        /// </summary>
-        /// <param name="message">The message.</param>
-        public ParametersMustNotBeEqualException(string message) : base(message)
-        {
-        }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ParametersMustNotBeEqualException"/> class.
+    /// </summary>
+    /// <param name="message">The message.</param>
+    public ParametersMustNotBeEqualException(string message) : base(message)
+    {
+    }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ParametersMustNotBeEqualException"/> class.
-        /// </summary>
-        /// <param name="message">The message.</param>
-        /// <param name="inner">The inner exception.</param>
-        public ParametersMustNotBeEqualException(string message, Exception inner) : base(message, inner)
-        {
-        }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ParametersMustNotBeEqualException"/> class.
+    /// </summary>
+    /// <param name="message">The message.</param>
+    /// <param name="inner">The inner exception.</param>
+    public ParametersMustNotBeEqualException(string message, Exception inner) : base(message, inner)
+    {
     }
 }
