@@ -16,7 +16,7 @@
         <RepositoryUrl>https://github.com/SeppPenner/DotNetEasyRandom</RepositoryUrl>
         <PackageIcon>Icon.png</PackageIcon>
         <RepositoryType>Github</RepositoryType>
-        <PackageReleaseNotes>Version 1.0.10.0 (2023-11-13): Updated NuGet packages, removed support for netstandard, removed support for netcoreapp3.1.</PackageReleaseNotes>
+        <PackageReleaseNotes>Version 1.0.11.0 (2023-12-07): Updated NuGet packages, added support for Net8.0.</PackageReleaseNotes>
         <PackageLicenseFile>License.txt</PackageLicenseFile>
         <PublishRepositoryUrl>true</PublishRepositoryUrl>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
@@ -35,7 +35,7 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
     </ItemGroup>
 
     <ItemGroup>
