@@ -176,6 +176,10 @@ Do not silently "clean up" these, they are existing behaviour of a published pac
    `BuildAndPushPackage.bat` deletes all `bin` and `obj` folders, restores, builds `Release` and
    pushes the `.nupkg` and `.snupkg` to nuget.org and to the GitHub package feed. It needs
    `NUGET_API_KEY` and `GITHUB_API_KEY` in the environment and ends with a `PAUSE`.
+   **Every line of that script below `@ECHO on` needs its leading `@`.** `ECHO` is on there, so a
+   line without it is written to the output before it runs, and for the four push lines that means
+   the expanded API keys land in the console and in any log that catches it. The script says
+   `Upload success.` no matter what the pushes answered, so judge a push by the lines above it.
 7. Push the commits and the tag.
 
 The version in `Changelog.md` has four parts (`1.0.14.0`), the tag has three (`1.0.14`).
