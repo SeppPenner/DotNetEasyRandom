@@ -37,8 +37,9 @@ down in `src`. There is no `Updating.md`, no `HowToUse.md`, no screenshots and n
 dotnet build src/DotNetEasyRandom.sln
 ```
 
-- Multi-targeting `net8.0;net9.0`, no `RuntimeIdentifiers`. Nothing in the code is platform
-  specific.
+- Multi-targeting `net8.0;net10.0`, no `RuntimeIdentifiers`. Nothing in the code is platform
+  specific. `net9.0` was dropped in version 1.0.14.0 because it is out of support since May 2026,
+  the same step the sibling repository `CSharpLanguageManager` took in its version 1.1.9.0.
 - All build properties live directly in `DotNetEasyRandom.csproj`. There is **no**
   `Directory.Build.props` in this repository, unlike the sibling repository
   `CSharpLanguageManager`.
@@ -48,7 +49,8 @@ dotnet build src/DotNetEasyRandom.sln
 - `TreatWarningsAsErrors` is enabled, so every warning breaks the build, NuGet warnings (`NU****`)
   from restore included. A clean build reports zero warnings, keep it that way.
 - `NU1803` (HTTP source usage during restore) is the one warning suppressed via `NoWarn`. Fix
-  warnings instead of extending that list.
+  warnings instead of extending that list. `NuGetAudit` and `NuGetAuditMode=all` are on, so a
+  vulnerable transitive package fails the build too.
 - Versions come from GitVersion.MsBuild out of the git tags, for example `1.0.14-3` for the third
   commit after tag `1.0.13`. Never edit a version property or an assembly version by hand.
 - Restore needs nuget.org. If a private feed is configured globally on the machine and answers 404
