@@ -46,6 +46,10 @@ dotnet build src/DotNetEasyRandom.sln
 - `GeneratePackageOnBuild` is `true`, so a `Release` build drops
   `HaemmerElectronics.SeppPenner.DotNetEasyRandom.<version>.nupkg` and the matching `.snupkg` into
   `src/DotNetEasyRandom/bin/Release`. That is the folder `BuildAndPushPackage.bat` pushes from.
+- `GenerateDocumentationFile` is `true` since version 1.0.14.0, so `DotNetEasyRandom.xml` sits next
+  to the assembly in `lib/net8.0` and `lib/net10.0` of the package and consumers see the XML
+  comments in IntelliSense. Together with `TreatWarningsAsErrors` this means a public member
+  without a doc comment breaks the build (`CS1591`).
 - `TreatWarningsAsErrors` is enabled, so every warning breaks the build, NuGet warnings (`NU****`)
   from restore included. A clean build reports zero warnings, keep it that way.
 - `NU1803` (HTTP source usage during restore) is the one warning suppressed via `NoWarn`. Fix
