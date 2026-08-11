@@ -16,14 +16,17 @@ Layout inside `src/DotNetEasyRandom`:
 - `EasyRandom.cs` plus `IEasyRandom.cs`: the whole public surface. `Next()`, `Next(int)`,
   `NextBytes(byte[])` and `NextDouble()` only forward to the wrapped `Random`.
   `Next(int, int, IncludeType)` and `NextDoubleExcludedBoth(double, double)` are the two methods
-  that add something. Every input check is a `private static` method of its own
+  that add something, both of them do their work in a private helper (`NextWithoutBothBorders`,
+  `NextDoubleWithoutZero`). Every input check is a `private static` method of its own
   (`CheckIntegers`, `CheckDoubles`, `CheckIfEqual`, `CheckIfBigger`, `CheckIfMaximum`,
-  `CheckIfMinimum`), each overloaded for `int` and `double`. Keep new checks in that shape.
+  `CheckIfMinimum`, `CheckIfNeighbours`), each overloaded for `int` and `double` where both make
+  sense. Keep new checks in that shape.
 - `IncludeType.cs`: the enumeration `None`, `StartOnly`, `EndOnly`, `Both`, without explicit
   values.
-- `Exceptions/`: `EqualToIntMaxValueException`, `MinMustBeGreaterThanMaxException` and
-  `ParametersMustNotBeEqualException`. All three are `[Serializable]`, derive from `Exception` and
-  have the three usual constructors. They are part of the public API of the package.
+- `Exceptions/`: `EqualToIntMaxValueException`, `MinMustBeGreaterThanMaxException`,
+  `NoValueBetweenParametersException` and `ParametersMustNotBeEqualException`. All four are
+  `[Serializable]`, derive from `Exception` and have the three usual constructors. They are part of
+  the public API of the package.
 - `GlobalUsings.cs`: all usings of the project, currently only `DotNetEasyRandom.Exceptions`.
 
 Repository root: `README.md` (the only user documentation, with the usage sample), `Changelog.md`,
@@ -105,6 +108,21 @@ Do not silently "clean up" these, they are existing behaviour of a published pac
 - **A range of `double.MinValue + 1` to `double.MaxValue - 1` returns infinity.** Both border
   checks pass, then `maxValue - minValue` overflows inside `NextDoubleExcludedBoth`. Unfixed,
   callers do not pass such ranges.
+- **`IncludeType.None` throws for neighbouring parameters.** `Next(1, 2, IncludeType.None)` has no
+  result that could be returned, both candidates are excluded borders. Since version 1.0.14.0 that
+  is a `NoValueBetweenParametersException` instead of the wrong value 2 that came back before.
+- **An undefined `IncludeType` throws an `ArgumentOutOfRangeException`.** That is the only exception
+  of this library that is not one of the four own types, and it is deliberate: an unknown enum value
+  is a programming error of the caller, not a rejected input value.
+- **`NextDoubleExcludedBoth` resamples the zero.** `Random.NextDouble()` returns a value from
+  `[0, 1)`, and a zero would return `minValue`, which the method promises to exclude. The private
+  `NextDoubleWithoutZero` therefore draws again on a zero. What remains is a range so narrow that
+  `value * (maxValue - minValue)` rounds to zero, then `minValue` still comes back. Do not turn this
+  into a loop over the result, for neighbouring `double` values no valid result exists and the loop
+  would never end.
+- **The exceptions have no inner exception.** `InnerException` is `null` everywhere since version
+  1.0.14.0, before that every throw site passed a second `Exception` with the very same message. The
+  constructors taking an inner exception stay, they are public API.
 - **The README sample uses `_random` fields.** That contradicts the `this.` qualification of the
   library code. It is a sample for consumers, leave it alone.
 - **AppVeyor badge without CI in the repository.** `README.md` links an AppVeyor build that is
@@ -117,28 +135,6 @@ Do not silently "clean up" these, they are existing behaviour of a published pac
 - **`Delete-BIN-OBJ-Folders.bat`** deletes every `bin` and `obj` below its own folder and is the
   first thing `BuildAndPushPackage.bat` does again inline. Both files skip `node_modules`, which
   this repository does not have.
-
-## Known defects
-
-These are wrong, not quirky. They are open, so do not build on the behaviour described here.
-
-- **`Next(1, 2, IncludeType.None)` returns 2.** `None` maps to
-  `this.random.Next(minValue + 1, maxValue)`, which is `Next(2, 2)` here, and `Random.Next(x, x)`
-  returns `x`. So the excluded upper border comes back whenever the two parameters are neighbours,
-  and that is the only case in which no valid value exists at all.
-- **The `switch` in `Next(int, int, IncludeType)` has no `default` arm.** `returnValue` is
-  initialized to `0`, so an undefined enum value such as `(IncludeType)42` silently returns 0
-  instead of being rejected.
-- **`NextDoubleExcludedBoth` includes the lower border.** `Random.NextDouble()` returns a value
-  from `[0, 1)`, so the result is from `[minValue, maxValue)`. `maxValue` is really excluded,
-  `minValue` is not, although the method name and the README promise both.
-- **The message of `MinMustBeGreaterThanMaxException` states the reason for the throw as the
-  requirement.** `Next(5, 1, IncludeType.Both)` says "The parameter 5 must be greater than the
-  parameter 1", which is exactly what is the case. It has to say "must be less than".
-- **The exceptions carry a copy of their own message as inner exception.** Every throw site builds
-  `new XException(message, new Exception(message))`, so the same text shows up twice and the inner
-  exception names no cause. The sibling repository `CSharpLanguageManager` dropped the same pattern
-  in its version 1.1.8.0.
 
 ## Releasing
 
