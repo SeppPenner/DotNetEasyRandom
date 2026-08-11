@@ -18,7 +18,7 @@ DotNetEasyRandom is an assembly/ library to generate random numbers with the int
 
 ## Available for
 * Net 8.0
-* Net 9.0
+* Net 10.0
 
 ## Net Core and Net Framework latest and LTS versions
 * https://dotnet.microsoft.com/download/dotnet
@@ -39,6 +39,8 @@ public class ExampleUsage
         _random.Next(1, 5, IncludeType.StartOnly); //Gives back 1, 2, 3 or 4
         _random.Next(1, 5, IncludeType.EndOnly); //Gives back 2, 3, 4 or 5
         _random.Next(1, 5, IncludeType.Both); //Gives back 1, 2, 3, 4 or 5
+        _random.Next(1, 2, IncludeType.None);
+        //Throws a NoValueBetweenParametersException, both candidates are excluded borders
         _random.NextBytes(new byte[] {1, 2, 3, 4}); //Function from the "normal" Random class
         _random.NextDouble(); //Function from the "normal" Random class
         _random.NextDoubleExcludedBoth(1.0, 2.0);
