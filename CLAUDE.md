@@ -8,8 +8,12 @@ is one call away. It is published as the NuGet package
 [HaemmerElectronics.SeppPenner.DotNetEasyRandom](https://www.nuget.org/packages/HaemmerElectronics.SeppPenner.DotNetEasyRandom/),
 `GeneratePackageOnBuild` is on, so every build writes the package.
 
-One solution `src/DotNetEasyRandom.sln` with exactly one project,
-`src/DotNetEasyRandom/DotNetEasyRandom.csproj`. There is no example project and no test project.
+One solution `src/DotNetEasyRandom.sln` with exactly two projects:
+
+- `src/DotNetEasyRandom/DotNetEasyRandom.csproj`, the library that becomes the package.
+- `src/DotNetEasyRandom.Tests/DotNetEasyRandom.Tests.csproj`, MSTest, added in version 1.0.14.0.
+
+There is no example project, the README carries the usage sample.
 
 Layout inside `src/DotNetEasyRandom`:
 
@@ -29,6 +33,18 @@ Layout inside `src/DotNetEasyRandom`:
   the public API of the package.
 - `GlobalUsings.cs`: all usings of the project, currently only `DotNetEasyRandom.Exceptions`.
 
+Layout inside `src/DotNetEasyRandom.Tests`:
+
+- `EasyRandomTests.cs`: the only test class, 21 tests. One test per include type that collects the
+  distinct results of 1000 draws, one test per rejected input, and the tests for the three methods
+  that only forward to the wrapped `Random`. The tests that cover a fixed defect name the version
+  the defect was in.
+- `GlobalUsings.cs`: all usings of the test project. `DotNetEasyRandom` itself is not among them,
+  the namespace of the test project is nested inside it and an explicit using would be reported as
+  unnecessary by `IDE0005`.
+- The class under test is always built with the seed 12, the seed the README uses. That way a test
+  drawing 1000 values draws the same 1000 values on every machine and can never fail on one only.
+
 Repository root: `README.md` (the only user documentation, with the usage sample), `Changelog.md`,
 `License.txt` (MIT), `Icon.png` (shipped inside the package), `BuildAndPushPackage.bat`,
 `Delete-BIN-OBJ-Folders.bat`, `.gitattributes` and `.gitignore`. The `.editorconfig` sits one level
@@ -38,6 +54,10 @@ down in `src`. There is no `Updating.md`, no `HowToUse.md`, no screenshots and n
 
 ```powershell
 dotnet build src/DotNetEasyRandom.sln
+```
+
+```powershell
+dotnet test src/DotNetEasyRandom.sln
 ```
 
 - Multi-targeting `net8.0;net10.0`, no `RuntimeIdentifiers`. Nothing in the code is platform
@@ -63,8 +83,12 @@ dotnet build src/DotNetEasyRandom.sln
 - Restore needs nuget.org. If a private feed is configured globally on the machine and answers 404
   for public packages, restore fails with `NU1301`. Then build with an explicit source:
   `dotnet build src/DotNetEasyRandom.sln --source https://api.nuget.org/v3/index.json`.
-- There are no tests. A behaviour change is verified by a throwaway project that references the
-  built library, not by `dotnet test`.
+- Tests are MSTest, in the single test project `src/DotNetEasyRandom.Tests`, which follows the same
+  package set as the sibling repositories: `Microsoft.NET.Test.Sdk`, `MSTest.TestAdapter`,
+  `MSTest.TestFramework`, `coverlet.collector` and `GitVersion.MsBuild`. The project targets
+  `net10.0` only, `IsPackable` is `false`, so it produces no package of its own and
+  `BuildAndPushPackage.bat` has nothing extra to push. `dotnet test` runs 21 tests, they need no
+  network and no file on disk. Never claim a test run happened without running it.
 
 ## Code conventions
 
