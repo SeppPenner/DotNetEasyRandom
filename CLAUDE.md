@@ -60,9 +60,10 @@ dotnet build src/DotNetEasyRandom.sln
 dotnet test src/DotNetEasyRandom.sln
 ```
 
-- Multi-targeting `net8.0;net10.0`, no `RuntimeIdentifiers`. Nothing in the code is platform
-  specific. `net9.0` was dropped in version 1.0.14.0 because it is out of support since May 2026,
-  the same step the sibling repository `CSharpLanguageManager` took in its version 1.1.9.0.
+- Multi-targeting `net10.0;net11.0`, no `RuntimeIdentifiers`, so building needs the .NET 11 SDK.
+  Nothing in the code is platform specific. `net9.0` was dropped in version 1.0.14.0 because it
+  is out of support since May 2026, the same step the sibling repository `CSharpLanguageManager`
+  took in its version 1.1.9.0. `net8.0` was dropped after 1.0.14.0.
 - All build properties live directly in `DotNetEasyRandom.csproj`. There is **no**
   `Directory.Build.props` in this repository, unlike the sibling repository
   `CSharpLanguageManager`.
@@ -70,7 +71,7 @@ dotnet test src/DotNetEasyRandom.sln
   `HaemmerElectronics.SeppPenner.DotNetEasyRandom.<version>.nupkg` and the matching `.snupkg` into
   `src/DotNetEasyRandom/bin/Release`. That is the folder `BuildAndPushPackage.bat` pushes from.
 - `GenerateDocumentationFile` is `true` since version 1.0.14.0, so `DotNetEasyRandom.xml` sits next
-  to the assembly in `lib/net8.0` and `lib/net10.0` of the package and consumers see the XML
+  to the assembly in `lib/net10.0` and `lib/net11.0` of the package and consumers see the XML
   comments in IntelliSense. Together with `TreatWarningsAsErrors` this means a public member
   without a doc comment breaks the build (`CS1591`).
 - `TreatWarningsAsErrors` is enabled, so every warning breaks the build, NuGet warnings (`NU****`)
@@ -86,9 +87,10 @@ dotnet test src/DotNetEasyRandom.sln
 - Tests are MSTest, in the single test project `src/DotNetEasyRandom.Tests`, which follows the same
   package set as the sibling repositories: `Microsoft.NET.Test.Sdk`, `MSTest.TestAdapter`,
   `MSTest.TestFramework`, `coverlet.collector` and `GitVersion.MsBuild`. The project targets
-  `net10.0` only, `IsPackable` is `false`, so it produces no package of its own and
-  `BuildAndPushPackage.bat` has nothing extra to push. `dotnet test` runs 21 tests, they need no
-  network and no file on disk. Never claim a test run happened without running it.
+  `net11.0` only, the newest framework the library targets. `IsPackable` is `false`, so it
+  produces no package of its own and `BuildAndPushPackage.bat` has nothing extra to push.
+  `dotnet test` runs 21 tests, they need no network and no file on disk. Never claim a test run
+  happened without running it.
 
 ## Code conventions
 
