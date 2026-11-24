@@ -222,9 +222,9 @@ The version in `Changelog.md` has four parts (`1.0.14.0`), the tag has three (`1
 GitVersion turns the tag into the assembly version, so an untagged commit produces something like
 `1.0.14-3+Branch.master.Sha...`.
 
-nuget.org holds every version from 1.0.2 to 1.0.14, the tag 1.0.1 was never published there. On
-2026-11-24 no tag had a GitHub release yet, and GitHub Packages held 1.0.2 to 1.0.7 and 1.0.11 to
-1.0.14, the history there is incomplete.
+nuget.org and GitHub Packages hold every version from 1.0.2 to 1.0.15. The tag 1.0.1 of 2019 was
+never published and stays that way. Every tag has a GitHub release, the one of 1.0.1 has no NuGet
+link. The missing versions on GitHub Packages and the releases were added on 2026-11-24.
 
 ## Git
 

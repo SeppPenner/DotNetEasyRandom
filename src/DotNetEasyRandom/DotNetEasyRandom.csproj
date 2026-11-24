@@ -16,7 +16,7 @@
         <RepositoryUrl>https://github.com/SeppPenner/DotNetEasyRandom</RepositoryUrl>
         <PackageIcon>Icon.png</PackageIcon>
         <RepositoryType>Github</RepositoryType>
-        <PackageReleaseNotes>Version 1.0.14.0 (2026-08-11): Removed support for Net9.0 as it is out of support, added support for Net10.0, updated NuGet packages, the XML documentation is now part of the package, IncludeType.None throws a NoValueBetweenParametersException for neighbouring parameters instead of returning the excluded maximum value, an unknown include type throws an ArgumentOutOfRangeException instead of returning 0, NextDoubleExcludedBoth does not return the minimum value any more, the MinMustBeGreaterThanMaxException tells the caller that the minimum must be less than the maximum, removed the inner exceptions that only repeated the message of the outer exception, added a MSTest test project.</PackageReleaseNotes>
+        <PackageReleaseNotes>Version 1.0.15.0 (2026-11-24): Removed support for Net8.0 as it is out of support, added support for Net11.0, updated NuGet packages.</PackageReleaseNotes>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PublishRepositoryUrl>true</PublishRepositoryUrl>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
