@@ -228,6 +228,8 @@ nuget.org holds every version from 1.0.2 to 1.0.14, the tag 1.0.1 was never publ
 
 ## Git
 
+- Include the full GitHub pull request or issue URL in the body of each related commit on a `Refs:`
+  line. Use the [GitHub issue skill](.claude/skills/github-issue/SKILL.md) for issue work and closeout.
 - **Never amend a commit.** No `git commit --amend`, not for a typo in the message, not to add a
   forgotten file, not even when the commit is still local. Write a follow-up commit instead. The
   release versions come from tags on exact commits, an amended commit leaves its tag pointing at a
